@@ -1,0 +1,95 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage[margin = 3.5cm]{geometry}     % avoid `overfull \hbox' warning
+\usepackage[tableposition = top]{caption} % captions
+\usepackage{booktabs}                     % horizontal lines in tables
+\usepackage[per-mode = symbol]{siunitx}   % physical quantities and SI units
+
+% shortcut
+\newcommand*\mr[2]{\begin{tabular}{c}#1\\#2\end{tabular}}
+
+\title{Problem Set 7}
+\author{Lilly Kirby-Rivera}
+\date{March 26, 2024}
+
+\begin{document}
+
+\maketitle
+
+\section*{Q6.}
+According to the data summary, \textit{logwage} is missing at a 25\% rate. It seems likely that this data is MNAR since the unobserved data is likely to be driven by an unobserved variable. Looking at a correlation table, listed below, we should rule out the possibility of MCAR data since there is a correlation with \textit{hgc} and \textit{tenure}. Looking at the raw data, it seems that those with many years of tenure have higher rates of missing data, so perhaps those with extreme values for income are reluctant to report it.
+
+
+\begin{center}
+1. Summary table \\
+\begin{tabular}[t]{lrrrrrrr}
+\toprule
+  & Unique & Missing Pct. & Mean & SD & Min & Median & Max\\
+\midrule
+logwage & 670 & 25 & \num{1.6} & \num{0.4} & \num{0.0} & \num{1.7} & \num{2.3}\\
+hgc & 16 & 0 & \num{13.1} & \num{2.5} & \num{0.0} & \num{12.0} & \num{18.0}\\
+tenure & 259 & 0 & \num{6.0} & \num{5.5} & \num{0.0} & \num{3.8} & \num{25.9}\\
+age & 13 & 0 & \num{39.2} & \num{3.1} & \num{34.0} & \num{39.0} & \num{46.0}\\
+\bottomrule
+\end{tabular}
+
+\vskip10pt
+2. Correlation table \\
+\begin{tabular}[t]{lrrrrr}
+\toprule
+  & logwage & hgc & tenure & age & missing\\
+\midrule
+logwage & 1 & . & . & . & .\\
+hgc & \num{.30} & 1 & . & . & .\\
+tenure & \num{.33} & \num{.12} & 1 & . & .\\
+age & \num{-.01} & \num{-.03} & \num{.07} & 1 & .\\
+missing &  & \num{.37} & \num{.23} & \num{-.01} & 1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{Q7.}
+Listwise deletion and the predicted values models are the closest to the true parameter of 0.093. Mean imputation yields the poorest result by estimating it to be 0.05 while multiple imputation is quite close to the other two models. Since the model for predicted values is a much worse estimate compared to the true value, the data is unlikely to be MAR. This demonstrates that missing observations can have an extreme impact on the explanatory power of your model, even when correcting for missing data with various methods. For this data, it is likely that the true parameter values are driven by the variation of outliers or more extreme values of \textit{logwage} that are under-reported.
+
+\vskip10pt
+\begin{center}
+3. Regression table \\
+\begin{tabular}[t]{lcccc}
+  & Listwise deletion & Mean imputation & Predicted values & Multiple imputation\\
+\midrule
+(Intercept) & \num{0.534}*** & \num{0.708}*** & \num{0.534}*** & \num{0.670}***\\
+ & (\num{0.146}) & (\num{0.116}) & (\num{0.112}) & (\num{0.142})\\
+hgc & \num{0.062}*** & \num{0.050}*** & \num{0.062}*** & \num{0.059}***\\
+ & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.006})\\
+collegenot college grad & \num{0.145}*** & \num{0.168}*** & \num{0.145}*** & \num{0.111}**\\
+ & (\num{0.034}) & (\num{0.026}) & (\num{0.025}) & (\num{0.036})\\
+tenure & \num{0.050}*** & \num{0.038}*** & \num{0.050}*** & \num{0.041}***\\
+ & (\num{0.005}) & (\num{0.004}) & (\num{0.004}) & (\num{0.005})\\
+tenure2 & \num{-0.002}*** & \num{-0.001}*** & \num{-0.002}*** & \\
+ & (\num{0.000}) & (\num{0.000}) & (\num{0.000}) & \\
+age & \num{0.000} & \num{0.000} & \num{0.000} & \num{-0.001}\\
+ & (\num{0.003}) & (\num{0.002}) & (\num{0.002}) & (\num{0.002})\\
+marriedsingle & \num{-0.022} & \num{-0.027}* & \num{-0.022}+ & \num{-0.013}\\
+ & (\num{0.018}) & (\num{0.014}) & (\num{0.013}) & (\num{0.016})\\
+I(tenure\textasciicircum{}2) &  &  &  & \num{-0.001}***\\
+ &  &  &  & (\num{0.000})\\
+\midrule
+Num.Obs. & \num{1669} & \num{2229} & \num{2229} & \num{2229}\\
+Num.Imp. &  &  &  & \num{5}\\
+R2 & \num{0.208} & \num{0.147} & \num{0.277} & \num{0.215}\\
+R2 Adj. & \num{0.206} & \num{0.145} & \num{0.275} & \num{0.213}\\
+AIC & \num{1179.9} & \num{1091.2} & \num{925.5} & \\
+BIC & \num{1223.2} & \num{1136.8} & \num{971.1} & \\
+Log.Lik. & \num{-581.936} & \num{-537.580} & \num{-454.737} & \\
+RMSE & \num{0.34} & \num{0.31} & \num{0.30} & \\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{center}
+
+\section*{Q8.}
+For my project, I am planning to estimate the entry deterring power of fraudulently listed patents in the FDA Orange Book. This research question is of recent interest to the FTC, who demanded in December 2023 that 10 manufacturers remove what they suspect to be improperly listed patents from the Orange book. While they hypothesize that improper patent listings may dissuade generic manufacturers from entering the market by imposing greater legal costs, there are no formal studies that provide estimates on their impact. I have already done a literature review and written up the background section of my paper. I am planning to use the Medicare Part D dataset for this paper, but I applied recently for the DFCAS dissertation research fellowship so I may purchase higher quality proprietary data. For this project, it will be essential to have accurate and rich data on price and quantity for the treatment and control groups of pharmaceuticals. I plan to use the probit model to estimate the likelihood of generic entrance for some number of periods with and without improper patent listing (by product).
+
+\end{document}
