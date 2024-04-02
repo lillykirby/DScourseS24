@@ -1,0 +1,204 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage[margin = 3.5cm]{geometry}     % avoid `overfull \hbox' warning
+\usepackage[tableposition = top]{caption} % captions
+\usepackage{booktabs}                     % horizontal lines in tables
+\usepackage[per-mode = symbol]{siunitx}   % physical quantities and SI units
+\usepackage{float}
+
+% shortcut
+\newcommand*\mr[2]{\begin{tabular}{c}#1\\#2\end{tabular}}
+
+\title{Problem Set 8}
+\author{Lilly Kirby-Rivera}
+\date{April 2, 2024}
+
+\begin{document}
+
+\maketitle
+\section*{Q4.}
+
+\begin{table}[H]
+\centering
+\caption{True Parameters} 
+\begin{tabular}{rr}
+  \hline
+ & true\_beta \\ 
+  \hline
+X1 & 1.50 \\ 
+  X2 & -1.00 \\ 
+  X3 & -0.25 \\ 
+  X4 & 0.75 \\ 
+  X5 & 3.50 \\ 
+  X6 & -2.00 \\ 
+  X7 & 0.50 \\ 
+  X8 & 1.00 \\ 
+  X9 & 1.25 \\ 
+  X10 & 2.00 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section*{Q5.}
+
+The estimates obtained from matrix algebra with an error term are extremely close. If you round off to two decimal places, they are actually the same as the true parameter values in Table 1.
+
+\begin{table}[H]
+\centering
+\caption{Matrix Algebra} 
+\begin{tabular}{rr}
+  \hline
+ & beta\_hat\_ols \\ 
+  \hline
+X1 & 1.50058 \\ 
+  X2 & -0.99562 \\ 
+  X3 & -0.24865 \\ 
+  X4 & 0.74719 \\ 
+  X5 & 3.50177 \\ 
+  X6 & -1.99944 \\ 
+  X7 & 0.50113 \\ 
+  X8 & 0.99874 \\ 
+  X9 & 1.25283 \\ 
+  X10 & 1.99938 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section*{Q6.}
+
+\begin{table}[H]
+\centering
+\caption{Gradient Descent} 
+\begin{tabular}{rr}
+  \hline
+ & gd\_beta \\ 
+  \hline
+X1 & 1.50058 \\ 
+  X2 & -0.99562 \\ 
+  X3 & -0.24865 \\ 
+  X4 & 0.74719 \\ 
+  X5 & 3.50177 \\ 
+  X6 & -1.99944 \\ 
+  X7 & 0.50113 \\ 
+  X8 & 0.99874 \\ 
+  X9 & 1.25283 \\ 
+  X10 & 1.99938 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section*{Q7.}
+
+Yes, the answers differ, but only very slightly. The answers only seem to differ in the 4th decimal place or beyond, and both estimates are extremely close to the true parameter values.
+
+\begin{table}[H]
+\centering
+\caption{L-BFGS OLS} 
+\begin{tabular}{rr}
+  \hline
+ & l\_bfgs\_ols \\ 
+  \hline
+X1 & 1.50058 \\ 
+  X2 & -0.99562 \\ 
+  X3 & -0.24865 \\ 
+  X4 & 0.74719 \\ 
+  X5 & 3.50177 \\ 
+  X6 & -1.99944 \\ 
+  X7 & 0.50113 \\ 
+  X8 & 0.99874 \\ 
+  X9 & 1.25283 \\ 
+  X10 & 1.99938 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\caption{Nelder-Mead OLS} 
+\begin{tabular}{rr}
+  \hline
+ & nm\_ols \\ 
+  \hline
+X1 & 1.50072 \\ 
+  X2 & -0.99578 \\ 
+  X3 & -0.24882 \\ 
+  X4 & 0.74731 \\ 
+  X5 & 3.50201 \\ 
+  X6 & -1.99947 \\ 
+  X7 & 0.50098 \\ 
+  X8 & 0.99887 \\ 
+  X9 & 1.25269 \\ 
+  X10 & 1.99957 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section*{Q8.}
+
+\begin{table}[H]
+\centering
+\caption{L-BFGS MLE} 
+\begin{tabular}{rr}
+  \hline
+ & betahat \\ 
+  \hline
+X1 & 1.50058 \\ 
+  X2 & -0.99562 \\ 
+  X3 & -0.24865 \\ 
+  X4 & 0.74719 \\ 
+  X5 & 3.50177 \\ 
+  X6 & -1.99944 \\ 
+  X7 & 0.50113 \\ 
+  X8 & 0.99874 \\ 
+  X9 & 1.25283 \\ 
+  X10 & 1.99938 \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+\section*{Q9.}
+The linear model function gives us almost exactly the same estimates as matrix algebra. When looking closely at the numbers in RStudio, only a couple of the estimates have any difference at all, which may be attributable to rounding. Both estimates come very close to the real values, only overestimating or underestimating at a small margin.
+
+\begin{table}
+\centering
+lm() Function Estimates: \\
+\begin{tabular}[t]{lc}
+\toprule
+  & (1)\\
+\midrule
+X1 & \num{1.501}***\\
+ & \vphantom{9} (\num{0.002})\\
+X2 & \num{-0.996}***\\
+ & \vphantom{8} (\num{0.002})\\
+X3 & \num{-0.249}***\\
+ & \vphantom{7} (\num{0.002})\\
+X4 & \num{0.747}***\\
+ & \vphantom{6} (\num{0.002})\\
+X5 & \num{3.502}***\\
+ & \vphantom{5} (\num{0.002})\\
+X6 & \num{-1.999}***\\
+ & \vphantom{4} (\num{0.002})\\
+X7 & \num{0.501}***\\
+ & \vphantom{3} (\num{0.002})\\
+X8 & \num{0.999}***\\
+ & \vphantom{2} (\num{0.002})\\
+X9 & \num{1.253}***\\
+ & \vphantom{1} (\num{0.002})\\
+X10 & \num{1.999}***\\
+ & (\num{0.002})\\
+\midrule
+Num.Obs. & \num{100000}\\
+R2 & \num{0.991}\\
+R2 Adj. & \num{0.991}\\
+AIC & \num{144993.2}\\
+BIC & \num{145097.9}\\
+Log.Lik. & \num{-72485.615}\\
+RMSE & \num{0.50}\\
+\bottomrule
+\multicolumn{2}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}
+
+\end{document}
