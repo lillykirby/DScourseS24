@@ -1,0 +1,254 @@
+\documentclass[12pt,a4paper]{article}
+
+% Language setting
+\usepackage[british]{babel}
+
+% Set page size and margins
+\usepackage[a4paper,top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,marginparwidth=1.75cm]{geometry}
+
+%----------- APA style references & citations (starting) ---
+% Useful packages
+%\usepackage[natbibapa]{apacite} % APA-style citations.
+
+\usepackage[style=apa, backend=biber]{biblatex} % APA 7th edition style citations using biblatex
+\addbibresource{PS11_KirbyRivera.bib} % Your .bib file
+
+% Formatting DOI in APA-7 style
+%\renewcommand{\doiprefix}{https://doi.org/}
+
+% Add additional APA 7th edition requirements
+\DeclareLanguageMapping{british}{british-apa} % Set language mapping
+\DeclareFieldFormat[article]{volume}{\apanum{#1}} % Format volume number
+
+% Modify 'and' to '&' in the bibliography
+\renewcommand*{\finalnamedelim}{%
+  \ifnumgreater{\value{liststop}}{2}{\finalandcomma}{}%
+  \addspace\&\space}
+  
+%----------- APA style references & citations (ending) ---
+
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{hyperref}
+%\usepackage{orcidlink}
+\usepackage[title]{appendix}
+\usepackage{mathrsfs}
+\usepackage{amsfonts}
+\usepackage{booktabs} % For \toprule, \midrule, \botrule
+\usepackage{caption}  % For \caption
+\usepackage{threeparttable} % For table footnotes
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{chngcntr}
+\usepackage{booktabs}
+\usepackage{lipsum}
+\usepackage{subcaption}
+\usepackage{authblk}
+\usepackage[T1]{fontenc}    % Font encoding
+\usepackage{csquotes}       % Include csquotes
+\usepackage{diagbox}
+
+\nocite{*}
+
+
+% Customize line spacing
+\usepackage{setspace}
+\onehalfspacing % 1.5 line spacing
+
+% Redefine section and subsection numbering format
+\usepackage{titlesec}
+\titleformat{\section} % Redefine section numbering format
+  {\normalfont\Large\bfseries}{\thesection.}{1em}{}
+  
+% Customize line numbering format to right-align line numbers
+\usepackage{lineno} % Add the lineno package
+\renewcommand\linenumberfont{\normalfont\scriptsize\sffamily\color{blue}}
+\rightlinenumbers % Right-align line numbers
+
+% Define a new command for the fourth-level title.
+\newcommand{\subsubsubsection}[1]{%
+  \vspace{\baselineskip}% Add some space
+  \noindent\textbf{#1\\}\quad% Adjust formatting as needed
+}
+% Change the position of the table caption above the table
+\usepackage{float}   % for customizing caption position
+\usepackage{caption} % for customizing caption format
+\captionsetup[table]{position=top} % caption position for tables
+
+% Define the unnumbered list
+\makeatletter
+\newenvironment{unlist}{%
+  \begin{list}{}{%
+    \setlength{\labelwidth}{0pt}%
+    \setlength{\labelsep}{0pt}%
+    \setlength{\leftmargin}{2em}%
+    \setlength{\itemindent}{-2em}%
+    \setlength{\topsep}{\medskipamount}%
+    \setlength{\itemsep}{3pt}%
+  }%
+}{%
+  \end{list}%
+}
+\makeatother
+
+% Suppress the warning about \@parboxrestore
+\pdfsuppresswarningpagegroup=1
+
+
+%-------------------------------------------
+% Paper Head
+%-------------------------------------------
+\title{Improper Patent Listings as a Method of Entry Deterrence in the US Pharmaceutical Industry}
+
+\author[1]{Lilly Kirby-Rivera}
+
+\date{May 1, 2023}  % Remove date
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Recent efforts from the Federal Trade Commission to remove improper and fraudulent patent listings from the Food and Drug Administration's Orange Book have raised concerns around this potential anticompetitve behavior. Using data from the Medical Expenditure Panel Survey, we explore the extent to which improper patent listings affect the generic entry timeline through a probit model and the Cox proportional hazards model. We find that (insert brief version of results here). %\lipsum[1]
+\end{abstract}
+
+\textbf{Keywords}: Entry deterrence, welfare analysis, pharmaceutical industry, patents, antitrust, anti-competitive.  
+
+%-------------------------------------------
+% Paper Body
+%-------------------------------------------
+%--- Introduction ---%
+\section{Introduction}
+In December 2023, the Federal Trade Commission (FTC) initiated action against 10
+pharmaceutical manufacturers suspected of improperly listing patents in the FDA Orange Book, a resource containing public information on patent and product exclusivity expiration dates. This move reflects longstanding concerns dating back to the early 2000s, when manufacturers were suspected of misusing patent listings to deter generic competition (\cite{ftc2002}). For example, manufacturers of inhalers may list patents of drug products related to the inhaler, such as a patent for an internal mechanical part of the inhaler, but not the active ingredient itself. This practice, believed to impose unnecessary legal costs, serves as a deterrent to generic entry (\cite{fda2020}). An additional incentive incumbent firms may have for improper patent listing is the “30-month stay” period, where the FDA cannot approve a generic version of the brand drug for 30 months or until patent litigation resolves (\cite{kannapan2021}). This strategy underscores the multifaceted challenges faced by generic entrants as they navigate the legal landscape dominated by incumbent firms. 
+
+\par The unique characteristics of the pharmaceutical industry combined with the recent debate surrounding Orange Book patents raise two particular questions. First, are fraudulently listed patents actually delaying the timeline of generic entry? If improper patent listings do indeed prolong the timeline for generic entry, it could hinder competition, affecting consumer access to affordable medications. Second, do these improperly listed patents affect consumer welfare? If these patents significantly delay generic entry, consumers may be forced to pay monopoly prices for extended periods, resulting in financial strain and reduced access to essential medications. The answers to these questions can inform policymakers about potential shortcomings in the patent listing process. This information can guide reforms to ensure the integrity of the process and promote a more competitive pharmaceutical market.
+
+\subsection{Pharmaceutical Industry Background}
+
+Things to discuss:
+\begin{itemize}
+    \item Hatch-Waxman act
+    \item Incentives for innovation (i.e. guaranteed monopoly protection for some number of years)
+    \item Incentives for generic entry
+    \item Barriers to entry for generics
+\end{itemize}
+
+\vskip0.2in
+
+Typical life-cycle of a pharmaceutical (\cite{kannapan2021}):
+\begin{enumerate}
+    \item Brand manufacturer invests in R\&D for a pharmaceutical and undergoes multiple phases of clinical trials
+    \item When the drug is proven to be safe, the FDA approves the New Drug Application (NDA) and the drug may shortly enter the market.
+    \item After four years (at the earliest), a generic may file for a Paragraph IV certification, which is the intent to challenge the validity or enforceability of the incumbent's patent(s) in court. This only occurs if the generic seeks to enter the market before patent expiration, which is usually the case.
+    \item Paragraph IV filing triggers a "30-month stay" period where the incumbent is protected from generic entry
+    \item Courts decide if the generic is infringing on the incumbent's patent(s) or not, and the generic is allowed to enter typically 12.5 - 14.5 years after the NDA approval date.
+    \item If legislation allows generic manufacturers to enter the market, generic entrants are granted "ANDAs" (Abbreviated New Drug Application), certifying that the drug is FDA approved without having to undergo the same clinical trials or research as the original.
+    \item The generic manufacturer(s) enter the market and compete with the incumbent in a monopoly/oligopoly.
+\end{enumerate}
+
+\subsection{Literature Review}
+
+This research question fits into a literature of entry deterrence as well as welfare analysis in empirical industrial organization. In the pharmaceutical industry, one of the most prominent papers in the entry deterrence literature is \cite{ellison2011}, which examines advertising, presentation proliferation, and pre-entry pricing as means of deterring entry. They provide a new methodology for empirically examining entry deterring behavior and demonstrate that market size and firm revenues are key determinants of strategic firm choices. The paper most closely related to the interests of this study is that of \cite{woodcock2016}, which examines the outcomes of pharmaceutical patent litigation settlement, finding that settlements that delay entry by 15 months or longer can reduce consumer welfare by as much as \$1.5 billion for an average drug. No published studies have formally examined the impact of improper patent listings on generic entry, which becomes increasingly relevant as efforts continue to reform the Orange Book.
+
+\vskip0.2in
+
+Add more to this section later, probably separating it into entry deterrence literature and pharmaceutical industry literature.
+
+%--- Data ---%
+\section{Data}
+
+The primary data source for this project was NBER's digitized archive of Orange Book versions from 1985 - 2016, which was possible to modernize by incorporating Orange Book data from 2016 - 2024. This dataset contains all patents associated with FDA approved drug products and links them to an application number, patent approval date, patent expiration date, and other patent characteristics.
+
+\vskip0.2in
+
+All data sources:
+\begin{enumerate}
+    \item Lex Machina legal data (obtained from a lawyer)
+    \item NBER digitized archive of 1985 - 2016 Orange Book data
+    \item 2016 - 2024 raw Orange Book data
+    \item Medical Expenditure and Panel Survey (This is proxy data on price and quantity for now. I have received a research grant that will allow me to purchase proprietary data this summer.)
+    \item NDC database from the FDA (for the purpose of linking NDCs in the MEPS data with application numbers that are linked to Orange Book data)
+    
+\end{enumerate}
+
+\subsection{Descriptive Statistics}
+
+Include descriptive statistics (mean, standard deviation, number of observations) for:
+\begin{itemize}
+    \item Number of years between approval and patent expiration
+    \item Mean number of years it takes for generic approval (First ANDA approval date - first NDA approval date)
+    \item Number of years until Paragraph IV certification is filed (First Paragraph IV filing date - first NDA approval date)
+    \item Number of years between Paragraph IV certification filing and generic entry (First ANDA approval date - first Paragraph IV filing date)
+\end{itemize}
+
+%--- Methodology ---%
+\section{Methodology}
+
+
+\subsection{Sample Selection}
+
+\begin{itemize}
+    \item First, pick out drugs with delist request flag
+    \item Next, use legal database to identify which patents have been completely invalidated in court and use these as the treatment group of improper patents
+    \item Additionally, probably narrow this down to drugs with an approved generic between 2010 - 2020 so it's possible to calculate incumbent market size (as a recommended control variable in \cite{ellison2011}) before generic entry
+    \item For control group, find drugs that experience generic entry between 2010 - 2020 *with no invalidated patents*
+\end{itemize}
+
+%--- Model ---%
+\section{Model}
+
+Three-stage game (as discussed in \cite{ellison2011}) where:
+\begin{enumerate}
+    \item Incumbent makes an investment (in this case, they invest in fraudulent patenting)
+    \item Entrant decides whether or not to incur a sunk cost of entering the market (in this case, challenging the incumbent in court by filing for a Paragraph IV certification)
+    \item The incumbent operates as a monopoly or in a duopoly/oligopoly with entrant(s)
+\end{enumerate}
+
+
+\subsection{Likelihood of Generic Entry}
+
+Use probit model to estimate the likelihood of generic entry after some number of years of monopoly (probably run the specification with 10, 12, 14, 16 years). Run this model with product type fixed effects, time fixed effects, patent expiration date, and market size as control variables. Explanatory variables will include partial/complete invalidation indicators and an indicator for Orange Book delist on or after the present year.
+
+\subsection{Hazard Model of Entry Delay}
+
+Use the Cox proportional hazards model to estimate monopoly survival for drugs with/without improperly listed patents. 
+
+%--- Results ---%
+\section{Results}
+
+\begin{itemize}
+    \item Insert table from probit model when ready
+    \item Insert table from hazard model when ready
+    \item State whether results show significance or not
+    \item State whether results align with hypothesis or not
+\end{itemize}
+
+%--- Conclusion ---%
+\section{Conclusion}
+
+\begin{itemize}
+    \item Restate hypothesis (that fraudulent patent listings will delay generic entry and reduce consumer welfare)
+    \item Summarize findings
+\end{itemize}
+
+\subsection{Limitations}
+
+The primary limitation with this paper is access to quality data. The MEPS data set works sufficiently as proxy data for price and quantity, but it is incomplete and lacks data on coupon usage, which is very common when transacting pharmaceuticals. Another limitation is the sample size being quite small for the control group, but this is inescapable for this analysis presently since very few patents have been invalidated in district or federal courts.
+
+\subsection{Policy Recommendations}
+
+Depends heavily on findings, but the FDA should clarify further what patents are allowed in the Orange Book, as manufacturers have been exploiting the vagueness of their guidelines for decades. While the Orange Book Transparency Act of 2020 provided some additional guidelines for appropriate patent listings, it still has not resolved many longstanding issues.
+
+%-------------------------------------------
+% References
+%-------------------------------------------
+
+% Print bibliography
+\printbibliography
+
+\end{document}
